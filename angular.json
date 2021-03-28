@@ -1,0 +1,168 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "ng-condition": {
+      "projectType": "library",
+      "root": "projects/ng-condition",
+      "sourceRoot": "projects/ng-condition/src",
+      "prefix": "ng",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng-condition/tsconfig.lib.json",
+            "project": "projects/ng-condition/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ng-condition/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-condition/src/test.ts",
+            "tsConfig": "projects/ng-condition/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-condition/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-condition/tsconfig.lib.json",
+              "projects/ng-condition/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ng-condition-demo": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "sass"
+        }
+      },
+      "root": "projects/ng-condition-demo",
+      "sourceRoot": "projects/ng-condition-demo/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ng-condition-demo",
+            "index": "projects/ng-condition-demo/src/index.html",
+            "main": "projects/ng-condition-demo/src/main.ts",
+            "polyfills": "projects/ng-condition-demo/src/polyfills.ts",
+            "tsConfig": "projects/ng-condition-demo/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/ng-condition-demo/src/favicon.ico",
+              "projects/ng-condition-demo/src/assets"
+            ],
+            "styles": [
+              "projects/ng-condition-demo/src/styles.sass"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/ng-condition-demo/src/environments/environment.ts",
+                  "with": "projects/ng-condition-demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ng-condition-demo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ng-condition-demo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ng-condition-demo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-condition-demo/src/test.ts",
+            "polyfills": "projects/ng-condition-demo/src/polyfills.ts",
+            "tsConfig": "projects/ng-condition-demo/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-condition-demo/karma.conf.js",
+            "assets": [
+              "projects/ng-condition-demo/src/favicon.ico",
+              "projects/ng-condition-demo/src/assets"
+            ],
+            "styles": [
+              "projects/ng-condition-demo/src/styles.sass"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-condition-demo/tsconfig.app.json",
+              "projects/ng-condition-demo/tsconfig.spec.json",
+              "projects/ng-condition-demo/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/ng-condition-demo/e2e/protractor.conf.js",
+            "devServerTarget": "ng-condition-demo:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ng-condition-demo:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "ng-condition"
+}

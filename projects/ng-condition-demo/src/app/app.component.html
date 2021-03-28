@@ -1,0 +1,74 @@
+<input [(ngModel)]="number" type="number"> {{ number }}<br>
+<ng-condition>
+    <ng-if [condition]="number <= 5">
+        [IF number
+        <= 5]<br />
+
+        <ng-condition>
+            <ng-if [condition]="number % 2 == 0">
+                Pari
+            </ng-if>
+            <ng-else>
+                Dispari
+            </ng-else>
+        </ng-condition>
+
+    </ng-if>
+    <ng-else-if [condition]="number <= 10">
+        [ELSE-IF number
+        <= 10]<br />
+
+        <ng-condition>
+            <ng-if [condition]="number % 2 == 0">
+                Even
+            </ng-if>
+            <ng-else>
+                Odd
+            </ng-else>
+        </ng-condition>
+    </ng-else-if>
+    <ng-else-if [condition]="number <= 20">
+        [ELSE-IF number
+        <= 20]<br />
+
+        <ng-condition>
+            <ng-if [condition]="number % 2 == 0">
+                Even
+            </ng-if>
+            <ng-else>
+                Odd
+            </ng-else>
+        </ng-condition>
+    </ng-else-if>
+    <ng-else>
+        [ELSE number > 20]<br />
+
+        <ng-condition>
+            <ng-if [condition]="number % 2 == 0">
+                Even
+            </ng-if>
+            <ng-else>
+                Odd
+            </ng-else>
+        </ng-condition>
+    </ng-else>
+</ng-condition>
+
+
+
+<div *ngIf="number <= 5; else majorOf5">
+    Number is minor or equal 5
+</div>
+<ng-template #majorOf5>
+    <div *ngIf="number <= 10; else majorOf10">
+        Number is minor or equal 10
+    </div>    
+    <ng-template #majorOf10>
+        <div *ngIf="number <= 20; else majorOf20">
+            Number is minor or equal 20
+        </div>
+        <ng-template #majorOf20>
+            Number is major of 20
+        </ng-template>
+    </ng-template>
+</ng-template>
