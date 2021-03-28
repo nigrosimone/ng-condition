@@ -1,6 +1,6 @@
 {
   "name": "ng-condition",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An alternative to `*ngIf; else` directive for simplify conditions into HTML template for Angular application.",
   "repository": {
     "type": "git",
