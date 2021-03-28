@@ -1,4 +1,4 @@
-# NgCondition [![Build Status](https://travis-ci.com/nigrosimone/ng-condition.svg?branch=main)](https://travis-ci.com/nigrosimone/ng-condition) [![Coverage Status](https://coveralls.io/repos/github/nigrosimone/ng-condition/badge.svg?branch=main)](https://coveralls.io/github/nigrosimone/ng-condition?branch=main) [![NPM version](https://img.shields.io/npm/v/ng-condition.svg)](https://www.npmjs.com/package/ng-condition)
+# NgCondition [![Build Status](https://travis-ci.com/nigrosimone/ng-condition.svg?branch=main)](https://travis-ci.com/nigrosimone/ng-condition) [![Coverage Status](https://coveralls.io/repos/github/nigrosimone/ng-condition/badge.svg?branch=master)](https://coveralls.io/github/nigrosimone/ng-condition?branch=master) [![NPM version](https://img.shields.io/npm/v/ng-condition.svg)](https://www.npmjs.com/package/ng-condition)
 
 An alternative to  `*ngIf; else` directive for simplify conditions into HTML template for Angular application.
 
