@@ -73,6 +73,50 @@ describe('NgCondition', () => {
     });
 });
 
+@Component({template: `
+<div>
+    <ng-condition>
+        <ng-if [condition]="number <= 5">
+        Number is minor or equal 5
+        </ng-if>
+        <ng-else-if [condition]="number <= 20">
+        Number is minor or equal 20
+        </ng-else-if>
+    </ng-condition>
+</div>
+`})
+class TestComponent2 {
+    number = 21;
+}
+describe('NgCondition2', () => {
+
+    let fixture: ComponentFixture<TestComponent2>;
+    let debugElement: DebugElement;
+    let element: HTMLElement;
+    let component: TestComponent2;
+
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+          declarations: [ TestComponent2],
+          imports: [NgConditionModule]
+        });
+        fixture = TestBed.createComponent(TestComponent2);
+        debugElement = fixture.debugElement;
+        component = fixture.componentInstance;
+        element = debugElement.nativeElement;
+    });
+
+    afterEach(() => {
+        document.body.removeChild(element);
+    });
+
+    it('test', () => {
+        component.number = 21;
+        fixture.detectChanges();
+        expect(element.textContent.trim()).toBe('');
+    });
+});
+
 class MockNgConditionBlock extends NgConditionBlock {}
 class MockQueryList {
     constructor(private array: Array<MockNgConditionBlock>){}
