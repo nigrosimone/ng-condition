@@ -12,6 +12,7 @@ export class NgConditionComponent implements AfterContentChecked {
   @ContentChildren(NgIfComponent) ngIfComponents: QueryList<NgIfComponent> | null = null;
   @ContentChildren(NgElseIfComponent) ngElseIfComponents: QueryList<NgElseIfComponent> | null = null;
   @ContentChildren(NgElseComponent) ngElseComponents: QueryList<NgElseComponent> | null = null;
+  @ContentChildren(NgConditionComponent) ngConditionComponents: QueryList<NgConditionComponent> | null = null;
 
   constructor(){}
 
@@ -19,6 +20,11 @@ export class NgConditionComponent implements AfterContentChecked {
     const ngIfComponents = this.ngIfComponents ? this.ngIfComponents.toArray() : [];
     const ngElseIfComponents = this.ngElseIfComponents ? this.ngElseIfComponents.toArray() : [];
     const ngElseComponents = this.ngElseComponents ? this.ngElseComponents.toArray() : [];
+    const ngConditionComponents = this.ngConditionComponents ? this.ngConditionComponents.toArray() : [];
+
+    if( ngConditionComponents.length > 0 ){
+      throw new Error('A child <ng-condition></ng-condition> is allowed only inside a condition block: ng-if, ng-else-if, ng-else');
+    }
 
     let ifFound = false;
     if( ngIfComponents.length > 0 ){

@@ -109,4 +109,10 @@ describe('NgCondition error', () => {
         expect( function(){ comp.ngAfterContentChecked(); } ).toThrow(new Error(`Only one <ng-else></ng-else> is allowed for <ng-condition>`));
     });
 
+    it('test nested', () => {
+        const comp = new NgConditionComponent();
+        comp.ngConditionComponents = new MockQueryList([new MockNgConditionBlock()]) as any;
+        expect( function(){ comp.ngAfterContentChecked(); } ).toThrow(new Error(`A child <ng-condition></ng-condition> is allowed only inside a condition block: ng-if, ng-else-if, ng-else`));
+    });
+
 });
