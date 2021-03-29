@@ -1,3 +1,3 @@
 export class NgConditionBlock {
-  show: boolean = true;
+  show: boolean = false;
 }
