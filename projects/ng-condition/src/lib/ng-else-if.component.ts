@@ -6,5 +6,5 @@ import { NgConditionBlock } from "./ng-condition-block";
   template: '<ng-content *ngIf="condition && show"></ng-content>'
 })
 export class NgElseIfComponent extends NgConditionBlock {
-  @Input() condition: boolean;
+  @Input() condition!: boolean;
 }

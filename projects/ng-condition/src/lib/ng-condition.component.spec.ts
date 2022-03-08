@@ -51,25 +51,25 @@ describe('NgCondition', () => {
     it('test if', () => {
         component.number = 5;
         fixture.detectChanges();
-        expect(element.textContent.trim()).toBe('Number is minor or equal 5');
+        expect(element.textContent?.trim()).toBe('Number is minor or equal 5');
     });
 
     it('test first else if', () => {
         component.number = 10;
         fixture.detectChanges();
-        expect(element.textContent.trim()).toBe('Number is minor or equal 10');
+        expect(element.textContent?.trim()).toBe('Number is minor or equal 10');
     });
 
     it('test second else if', () => {
         component.number = 20;
         fixture.detectChanges();
-        expect(element.textContent.trim()).toBe('Number is minor or equal 20');
+        expect(element.textContent?.trim()).toBe('Number is minor or equal 20');
     });
 
     it('test else', () => {
         component.number = 21;
         fixture.detectChanges();
-        expect(element.textContent.trim()).toBe('Number is major of 20');
+        expect(element.textContent?.trim()).toBe('Number is major of 20');
     });
 });
 
@@ -85,6 +85,7 @@ describe('NgCondition', () => {
     </ng-condition>
 </div>
 `})
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 class TestComponent2 {
     number = 21;
 }
@@ -113,12 +114,13 @@ describe('NgCondition2', () => {
     it('test', () => {
         component.number = 21;
         fixture.detectChanges();
-        expect(element.textContent.trim()).toBe('');
+        expect(element.textContent?.trim()).toBe('');
     });
 });
 
 class MockNgConditionBlock extends NgConditionBlock {}
 class MockQueryList {
+    // eslint-disable-next-line no-unused-vars
     constructor(private array: Array<MockNgConditionBlock>){}
     toArray(): Array<MockNgConditionBlock> {
         return this.array;

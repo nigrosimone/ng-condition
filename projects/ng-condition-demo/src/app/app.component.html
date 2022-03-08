@@ -3,10 +3,10 @@
 
     <ng-if [condition]="number <= 5">
         [IF number
-        <= 5]<br />
+        &lt;= 5]<br />
 
         <ng-condition>
-            <ng-if [condition]="number % 2 == 0">
+            <ng-if [condition]="number % 2 === 0">
                 Pari
             </ng-if>
             <ng-else>
@@ -17,10 +17,10 @@
     </ng-if>
     <ng-else-if [condition]="number <= 10">
         [ELSE-IF number
-        <= 10]<br />
+        &lt;= 10]<br />
 
         <ng-condition>
-            <ng-if [condition]="number % 2 == 0">
+            <ng-if [condition]="number % 2 === 0">
                 Even
             </ng-if>
             <ng-else>
@@ -30,10 +30,10 @@
     </ng-else-if>
     <ng-else-if [condition]="number <= 20">
         [ELSE-IF number
-        <= 20]<br />
+        &lt;= 20]<br />
 
         <ng-condition>
-            <ng-if [condition]="number % 2 == 0">
+            <ng-if [condition]="number % 2 === 0">
                 Even
             </ng-if>
             <ng-else>
@@ -42,10 +42,10 @@
         </ng-condition>
     </ng-else-if>
     <ng-else>
-        [ELSE number > 20]<br />
+        [ELSE number &gt; 20]<br />
 
         <ng-condition>
-            <ng-if [condition]="number % 2 == 0">
+            <ng-if [condition]="number % 2 === 0">
                 Even
             </ng-if>
             <ng-else>
