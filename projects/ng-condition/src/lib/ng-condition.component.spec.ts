@@ -5,7 +5,8 @@ import { NgConditionComponent } from './ng-condition.component';
 import { NgConditionModule } from './ng-condition.module';
 
 
-@Component({template: `
+@Component({
+    template: `
 <div>
     <ng-condition>
         <ng-if [condition]="number <= 5">
@@ -35,8 +36,8 @@ describe('NgCondition', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-          declarations: [ TestComponent],
-          imports: [NgConditionModule]
+            declarations: [TestComponent],
+            imports: [NgConditionModule]
         });
         fixture = TestBed.createComponent(TestComponent);
         debugElement = fixture.debugElement;
@@ -73,7 +74,8 @@ describe('NgCondition', () => {
     });
 });
 
-@Component({template: `
+@Component({
+    template: `
 <div>
     <ng-condition>
         <ng-if [condition]="number <= 5">
@@ -98,8 +100,8 @@ describe('NgCondition2', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-          declarations: [ TestComponent2],
-          imports: [NgConditionModule]
+            declarations: [TestComponent2],
+            imports: [NgConditionModule]
         });
         fixture = TestBed.createComponent(TestComponent2);
         debugElement = fixture.debugElement;
@@ -118,10 +120,10 @@ describe('NgCondition2', () => {
     });
 });
 
-class MockNgConditionBlock extends NgConditionBlock {}
+class MockNgConditionBlock extends NgConditionBlock { }
 class MockQueryList {
     // eslint-disable-next-line no-unused-vars
-    constructor(private array: Array<MockNgConditionBlock>){}
+    constructor(private array: Array<MockNgConditionBlock>) { }
     toArray(): Array<MockNgConditionBlock> {
         return this.array;
     }
@@ -133,32 +135,32 @@ describe('NgCondition error', () => {
     it('test if 1', () => {
         const comp = new NgConditionComponent();
         comp.ngElseIfComponents = new MockQueryList([new MockNgConditionBlock()]) as any;
-        expect( function(){ comp.ngAfterContentChecked(); } ).toThrow(new Error(`One <ng-if></ng-if> is mandatory for <ng-condition>`));
+        expect(function () { comp.ngAfterContentChecked(); }).toThrow(new Error(`One <ng-if></ng-if> is mandatory for <ng-condition>`));
     });
 
     it('test if 2', () => {
         const comp = new NgConditionComponent();
         comp.ngElseComponents = new MockQueryList([new MockNgConditionBlock()]) as any;
-        expect( function(){ comp.ngAfterContentChecked(); } ).toThrow(new Error(`One <ng-if></ng-if> is mandatory for <ng-condition>`));
+        expect(function () { comp.ngAfterContentChecked(); }).toThrow(new Error(`One <ng-if></ng-if> is mandatory for <ng-condition>`));
     });
 
     it('test multiple if', () => {
         const comp = new NgConditionComponent();
         comp.ngIfComponents = new MockQueryList([new MockNgConditionBlock(), new MockNgConditionBlock()]) as any;
-        expect( function(){ comp.ngAfterContentChecked(); } ).toThrow(new Error(`Only one <ng-if></ng-if> is allowed for <ng-condition>`));
+        expect(function () { comp.ngAfterContentChecked(); }).toThrow(new Error(`Only one <ng-if></ng-if> is allowed for <ng-condition>`));
     });
 
     it('test multiple else', () => {
         const comp = new NgConditionComponent();
         comp.ngIfComponents = new MockQueryList([new MockNgConditionBlock()]) as any;
         comp.ngElseComponents = new MockQueryList([new MockNgConditionBlock(), new MockNgConditionBlock()]) as any;
-        expect( function(){ comp.ngAfterContentChecked(); } ).toThrow(new Error(`Only one <ng-else></ng-else> is allowed for <ng-condition>`));
+        expect(function () { comp.ngAfterContentChecked(); }).toThrow(new Error(`Only one <ng-else></ng-else> is allowed for <ng-condition>`));
     });
 
     it('test nested', () => {
         const comp = new NgConditionComponent();
         comp.ngConditionComponents = new MockQueryList([new MockNgConditionBlock()]) as any;
-        expect( function(){ comp.ngAfterContentChecked(); } ).toThrow(new Error(`A child <ng-condition></ng-condition> is allowed only inside a condition block: ng-if, ng-else-if, ng-else`));
+        expect(function () { comp.ngAfterContentChecked(); }).toThrow(new Error(`A child <ng-condition></ng-condition> is allowed only inside a condition block: ng-if, ng-else-if, ng-else`));
     });
 
 });

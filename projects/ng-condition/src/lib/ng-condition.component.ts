@@ -1,21 +1,20 @@
-import { AfterContentChecked, ChangeDetectionStrategy, Component, ContentChildren, QueryList } from "@angular/core";
+import { AfterContentChecked, Component, ContentChildren, QueryList } from "@angular/core";
 import { NgElseIfComponent } from "./ng-else-if.component";
 import { NgElseComponent } from "./ng-else.component";
 import { NgIfComponent } from "./ng-if.component";
 
 @Component({
   selector: 'ng-condition',
-  template: '<ng-content></ng-content>',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  template: '<ng-content></ng-content>'
 })
 export class NgConditionComponent implements AfterContentChecked {
- 
+
   @ContentChildren(NgIfComponent) ngIfComponents: QueryList<NgIfComponent> | null = null;
   @ContentChildren(NgElseIfComponent) ngElseIfComponents: QueryList<NgElseIfComponent> | null = null;
   @ContentChildren(NgElseComponent) ngElseComponents: QueryList<NgElseComponent> | null = null;
   @ContentChildren(NgConditionComponent) ngConditionComponents: QueryList<NgConditionComponent> | null = null;
 
-  constructor(){}
+  constructor() { }
 
   ngAfterContentChecked(): void {
     const ngIfComponents = this.ngIfComponents ? this.ngIfComponents.toArray() : [];
@@ -23,18 +22,18 @@ export class NgConditionComponent implements AfterContentChecked {
     const ngElseComponents = this.ngElseComponents ? this.ngElseComponents.toArray() : [];
     const ngConditionComponents = this.ngConditionComponents ? this.ngConditionComponents.toArray() : [];
 
-    if( ngConditionComponents.length > 0 ){
+    if (ngConditionComponents.length > 0) {
       throw new Error('A child <ng-condition></ng-condition> is allowed only inside a condition block: ng-if, ng-else-if, ng-else');
     }
 
     let ifFound = false;
-    if( ngIfComponents.length > 0 ){
+    if (ngIfComponents.length > 0) {
       for (let index = 0; index < ngIfComponents.length; index++) {
-        if( index > 0 ){
+        if (index > 0) {
           throw new Error('Only one <ng-if></ng-if> is allowed for <ng-condition>');
         }
         const component = ngIfComponents[index];
-        if( component.condition ){
+        if (component.condition) {
           ifFound = true;
         }
         component.show = component.condition;
@@ -42,26 +41,26 @@ export class NgConditionComponent implements AfterContentChecked {
     }
 
     let elseIfFound = false;
-    if( ngElseIfComponents.length > 0 ){
-      if( ngIfComponents.length == 0 ){
+    if (ngElseIfComponents.length > 0) {
+      if (ngIfComponents.length == 0) {
         throw new Error('One <ng-if></ng-if> is mandatory for <ng-condition>');
       }
       for (let index = 0; index < ngElseIfComponents.length; index++) {
         const component = ngElseIfComponents[index];
         const show = !ifFound && !elseIfFound && component.condition;
-        if( component.condition ){
+        if (component.condition) {
           elseIfFound = true;
         }
         component.show = show;
       }
     }
 
-    if( ngElseComponents.length > 0 ){
-      if( ngIfComponents.length == 0 ){
+    if (ngElseComponents.length > 0) {
+      if (ngIfComponents.length == 0) {
         throw new Error('One <ng-if></ng-if> is mandatory for <ng-condition>');
       }
       for (let index = 0; index < ngElseComponents.length; index++) {
-        if( index > 0 ){
+        if (index > 0) {
           throw new Error('Only one <ng-else></ng-else> is allowed for <ng-condition>');
         }
         const component = ngElseComponents[index];

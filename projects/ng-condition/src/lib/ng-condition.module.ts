@@ -9,7 +9,6 @@ import { NgIfComponent } from './ng-if.component';
 @NgModule({
   declarations: [NgIfComponent, NgElseIfComponent, NgElseComponent, NgConditionComponent],
   imports: [CommonModule],
-  exports: [NgIfComponent, NgElseIfComponent, NgElseComponent, NgConditionComponent],
-  providers: []
+  exports: [NgIfComponent, NgElseIfComponent, NgElseComponent, NgConditionComponent]
 })
-export class NgConditionModule {}
+export class NgConditionModule { }
