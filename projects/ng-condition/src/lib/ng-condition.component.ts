@@ -1,11 +1,12 @@
-import { AfterContentChecked, Component, ContentChildren, QueryList } from "@angular/core";
+import { AfterContentChecked, ChangeDetectionStrategy, Component, ContentChildren, QueryList } from "@angular/core";
 import { NgElseIfComponent } from "./ng-else-if.component";
 import { NgElseComponent } from "./ng-else.component";
 import { NgIfComponent } from "./ng-if.component";
 
 @Component({
   selector: 'ng-condition',
-  template: '<ng-content></ng-content>'
+  template: '<ng-content></ng-content>',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgConditionComponent implements AfterContentChecked {
  
