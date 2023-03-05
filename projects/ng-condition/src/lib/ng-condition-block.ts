@@ -1,6 +1,6 @@
 import { Directive } from "@angular/core";
 
 @Directive()
-export class NgConditionBlock {
+export abstract class NgConditionBlock {
   show: boolean = false;
 }

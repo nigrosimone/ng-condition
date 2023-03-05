@@ -5,6 +5,4 @@ import { NgConditionBlock } from "./ng-condition-block";
   selector: 'ng-else',
   template: '<ng-content *ngIf="show"></ng-content>'
 })
-export class NgElseComponent extends NgConditionBlock {
-
-}
+export class NgElseComponent extends NgConditionBlock { }

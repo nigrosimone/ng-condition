@@ -14,8 +14,6 @@ export class NgConditionComponent implements AfterContentChecked {
   @ContentChildren(NgElseComponent) ngElseComponents: QueryList<NgElseComponent> | null = null;
   @ContentChildren(NgConditionComponent) ngConditionComponents: QueryList<NgConditionComponent> | null = null;
 
-  constructor() { }
-
   ngAfterContentChecked(): void {
     const ngIfComponents = this.ngIfComponents ? this.ngIfComponents.toArray() : [];
     const ngElseIfComponents = this.ngElseIfComponents ? this.ngElseIfComponents.toArray() : [];
