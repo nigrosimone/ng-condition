@@ -134,31 +134,37 @@ describe('NgCondition error', () => {
 
     it('test if 1', () => {
         const comp = new NgConditionComponent();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         comp.ngElseIfComponents = new MockQueryList([new MockNgConditionBlock()]) as any;
         expect(function () { comp.ngAfterContentChecked(); }).toThrow(new Error(`One <ng-if></ng-if> is mandatory for <ng-condition>`));
     });
 
     it('test if 2', () => {
         const comp = new NgConditionComponent();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         comp.ngElseComponents = new MockQueryList([new MockNgConditionBlock()]) as any;
         expect(function () { comp.ngAfterContentChecked(); }).toThrow(new Error(`One <ng-if></ng-if> is mandatory for <ng-condition>`));
     });
 
     it('test multiple if', () => {
         const comp = new NgConditionComponent();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         comp.ngIfComponents = new MockQueryList([new MockNgConditionBlock(), new MockNgConditionBlock()]) as any;
         expect(function () { comp.ngAfterContentChecked(); }).toThrow(new Error(`Only one <ng-if></ng-if> is allowed for <ng-condition>`));
     });
 
     it('test multiple else', () => {
         const comp = new NgConditionComponent();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         comp.ngIfComponents = new MockQueryList([new MockNgConditionBlock()]) as any;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         comp.ngElseComponents = new MockQueryList([new MockNgConditionBlock(), new MockNgConditionBlock()]) as any;
         expect(function () { comp.ngAfterContentChecked(); }).toThrow(new Error(`Only one <ng-else></ng-else> is allowed for <ng-condition>`));
     });
 
     it('test nested', () => {
         const comp = new NgConditionComponent();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         comp.ngConditionComponents = new MockQueryList([new MockNgConditionBlock()]) as any;
         expect(function () { comp.ngAfterContentChecked(); }).toThrow(new Error(`A child <ng-condition></ng-condition> is allowed only inside a condition block: ng-if, ng-else-if, ng-else`));
     });
